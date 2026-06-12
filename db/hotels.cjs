@@ -11,4 +11,16 @@ const createHotels = async(hotelName, hotelPrice, hotelDescription) => {
   }
 }
 
-module.exports = { createHotels }
+const getAllHotels = async() => {
+  try {
+   const { rows: allHotels } = await client.query(`
+      SELECT * FROM hotels;
+    `);
+
+    return allHotels;
+  } catch(err) {
+    console.log(err);
+  }
+}
+
+module.exports = { createHotels, getAllHotels }
